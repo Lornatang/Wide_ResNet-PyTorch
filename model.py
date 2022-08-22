@@ -19,7 +19,7 @@ from torch import nn
 
 __all__ = [
     "WideResNet",
-    "resnet18",
+    "wide_resnet50", "wide_resnet101",
 ]
 
 
