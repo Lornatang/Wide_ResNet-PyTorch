@@ -84,10 +84,10 @@ Source of original paper results: [https://arxiv.org/pdf/1605.07146v4.pdf](https
 
 In the following table, the top-x error value in `()` indicates the result of the project, and `-` indicates no test.
 
-|     Model      |   Dataset   | Top-1 error (val)  | Top-5 error (val) |
-|:--------------:|:-----------:|:------------------:|:-----------------:|
-| wide_resnet50  | ImageNet_1K | 27.88%(**30.25%**) |   -(**10.93%**)   |
-| wide_resnet101 | ImageNet_1K | 25.03%(**26.71%**) | 7.76%(**8.58%**)  |
+|     Model      |   Dataset   | Top-1 error (val) | Top-5 error (val) |
+|:--------------:|:-----------:|:-----------------:|:-----------------:|
+| wide_resnet50  | ImageNet_1K | 21.9%(**18.70%**) | 6.03%(**4.49%**)  |
+| wide_resnet101 | ImageNet_1K |   -(**17.65%**)   |   -(**4.01%**)    |
 
 ```bash
 # Download `Wide_ResNet50-ImageNet_1K-d5b3452e.pth.tar` weights to `./results/pretrained_models`
