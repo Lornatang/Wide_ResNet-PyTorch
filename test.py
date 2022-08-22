@@ -28,10 +28,10 @@ model_names = sorted(
 
 
 def build_model() -> nn.Module:
-    resnet_model = model.__dict__[config.model_arch_name](num_classes=config.model_num_classes)
-    resnet_model = resnet_model.to(device=config.device, memory_format=torch.channels_last)
+    wide_resnet_model = model.__dict__[config.model_arch_name](num_classes=config.model_num_classes)
+    wide_resnet_model = wide_resnet_model.to(device=config.device, memory_format=torch.channels_last)
 
-    return resnet_model
+    return wide_resnet_model
 
 
 def load_dataset() -> CUDAPrefetcher:
@@ -56,16 +56,16 @@ def load_dataset() -> CUDAPrefetcher:
 
 def main() -> None:
     # Initialize the model
-    resnet_model = build_model()
+    wide_resnet_model = build_model()
     print(f"Build `{config.model_arch_name}` model successfully.")
 
     # Load model weights
-    resnet_model, _, _, _, _, _ = load_state_dict(resnet_model, config.model_weights_path)
+    wide_resnet_model, _, _, _, _, _ = load_state_dict(wide_resnet_model, config.model_weights_path)
     print(f"Load `{config.model_arch_name}` "
           f"model weights `{os.path.abspath(config.model_weights_path)}` successfully.")
 
     # Start the verification mode of the model.
-    resnet_model.eval()
+    wide_resnet_model.eval()
 
     # Load test dataloader
     test_prefetcher = load_dataset()
@@ -97,7 +97,7 @@ def main() -> None:
             batch_size = images.size(0)
 
             # Inference
-            output = resnet_model(images)
+            output = wide_resnet_model(images)
 
             # measure accuracy and record loss
             top1, top5 = accuracy(output, target, topk=(1, 5))
